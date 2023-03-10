@@ -1,17 +1,17 @@
 class Square2D{
-  static vertexPositions = [];
+    static vertexPositions = [];
 	static Colors = [];   
 	static texcor = [];
 	static conPoints = [];
 	static Indices = [];
 	static pos = [];
 
-  tatic shaderProgram = -1;
+    static shaderProgram = -1;
 
-  static positionBuffer = -1;
-  static aPositionShader = -1;
+    static positionBuffer = -1;
+    static aPositionShader = -1;
 
-  static cBuffer = -1;
+    static cBuffer = -1;
 	static aColor = -1;
 
 	static tBuffer = -1;
@@ -111,19 +111,19 @@ class Square2D{
 		  }
 		}
 	  }
-  static initialize(){
+    static initialize(){
 	Square2D.shaderProgram = initShaders( gl, "./vshader.glsl", "./fshader.glsl");
 	
 	//-------------------------------------------------------------------------------------------------------
 	//reading patch control points 
 	var smf_file = loadFileAJAX("patch.txt");
-  var lines = smf_file.split('\n');
+    var lines = smf_file.split('\n');
 
-  for (var line=0; line<lines.length; line++){
-    var strings = lines[line].trimEnd().split(' ');
+    for (var line=0; line<lines.length; line++){
+    	var strings = lines[line].trimEnd().split(' ');
 		var v = vec3(parseFloat(strings[0]), parseFloat(strings[1]), parseFloat(strings[2]));
-    Square2D.conPoints.push(v);
-  }
+    	Square2D.conPoints.push(v);
+  	}
 	Square2D.generateBez(Square2D.conPoints, Square2D.nu, Square2D.mv);
 
 	for (var f=0; f<Square2D.Indices.length; f++){
@@ -235,7 +235,7 @@ class Square2D{
 	Square2D.loc7 = gl.getUniformLocation(Square2D.shaderProgram, "uShinetwo");
 	Square2D.loc8 = gl.getUniformLocation(Square2D.shaderProgram, "uSpec2");
 	Square2D.loc9 = gl.getUniformLocation(Square2D.shaderProgram, "uDiff2");
-  }
+    }
     	
     constructor(){
         if(Square2D.shaderProgram == -1)
@@ -288,8 +288,8 @@ class Square2D{
 		Square2D.count = 0;
 
 	}
-draw(){
-    gl.useProgram(Square2D.shaderProgram);
+	draw(){
+    	gl.useProgram(Square2D.shaderProgram);
 		gl.uniform1i(Square2D.sampler, 0);
 		gl.bindTexture(gl.TEXTURE_2D, Square2D.bezTex);
 		
@@ -298,7 +298,7 @@ draw(){
 		gl.enableVertexAttribArray(Square2D.aText); 
 
 		gl.bindBuffer( gl.ARRAY_BUFFER, Square2D.positionBuffer);
-    gl.vertexAttribPointer(Square2D.aPositionShader, 3, gl.FLOAT, false, 0, 0 );
+    	gl.vertexAttribPointer(Square2D.aPositionShader, 3, gl.FLOAT, false, 0, 0 );
 		gl.enableVertexAttribArray(Square2D.aPositionShader);   
 
 
